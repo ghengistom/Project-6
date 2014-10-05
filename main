@@ -1,0 +1,32 @@
+#include <iostream>
+#include "stackLi.h"
+
+using namespace std;
+
+
+
+int main()
+{
+	stackLi<char> S;
+	char c;
+	//S.push(10);
+	//S.push(30);
+	cout << "what would you like to enter?";
+
+	while (cin.get(c) && c != '\n')						//push items onto stack
+	{
+		//cin >> c;
+		S.push(c);
+	}
+
+	while (S.Emptys() != true )		//|| S.Emptys()!=NULL //print stack
+	{
+		char holdpop = S.pops();
+		cout << holdpop<<"->";
+	}
+
+
+
+	system("pause");
+	return 0;
+}
