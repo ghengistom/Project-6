@@ -1,38 +1,67 @@
 #include <iostream>
-#include "stackLi.h"
+#include "QUEUE_LIST.h"
+#include "stack_list.h"
 
 using namespace std;
+void TestPalindrome()
+{
+	QUEUE_LIST<char> Q;
+	stack_list<char> S;
+	char c;
+	int counter=0;
+	char a,b;
+	cout<<"Enter a phrase to check if palindrome\n";
+	
+	while (cin.get(c) && c!='\n')
+	{
+		if(isalpha(c))
+		{
+			c=toupper(c);
+			counter++;
+			S.push(c);
+			Q.pushq(c);
+		}
+	}
+	
+	while (S.Emptys()!=true||Q.Emptyq()!=true)
+	{
+		a=S.pops();
+		b=Q.popq();
+		if (a!=b)
+		{
+			break;
+		}
+	}
+	if(S.Emptys())	
+	{
+		cout<<"this is a palindrome\n\n";
+	}
+	else 
+		cout<<"this is not a palindrome";
 
-
-
+	cout<<"\n\n";
+	while (Q.Emptyq()!=true)
+	{
+		b=Q.popq();
+		cout<<b;
+	}
+	char yesorno;
+	cout<<"Continue(y/n)?";
+	cin>>yesorno;
+	yesorno=toupper(yesorno);
+	if(yesorno=='Y')
+	{
+		cin.ignore();
+		cin.clear();
+		TestPalindrome();
+	}
+}
 int main()
 {
-	stackLi<char> S;
-	char c;
-	//S.push(10);
-	//S.push(30);
-	int counter = 0;
-	cout << "what would you like to enter?";
-
-	while (cin.get(c) && c != '\n')						//push items onto stack
-	{
-		if (isalpha(c))									//if letter push onto stack
-		{
-			counter++;
-			//cin >> c;
-			S.push(c);
-		}
-		
-	}
-	cout << "\n the number of letters are:" << counter << "\n\n";
-	while (S.Emptys() != true )		//|| S.Emptys()!=NULL //print stack
-	{
-		char holdpop = S.pops();
-		cout << holdpop<<"->";
-	}
-
-
-
+	
+	TestPalindrome();
+	
+	
 	system("pause");
 	return 0;
 }
