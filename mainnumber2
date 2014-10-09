@@ -2,7 +2,7 @@
 #include "stackLi.h"
 #include "QUEUE_LIST.h"
 
-QUEUE_LIST<int> Q;
+QUEUE_LIST<int> Q,Q2;
 int c=1;
 int b=1;
 
@@ -10,36 +10,42 @@ using namespace std;
 
 int main()
 {
+	int counter = 0;
 	do
 	{
 		cout << "Enter the coefficient of a term(0 0) to stop: ";
 		cin >> c;
 		cin >> b;
 		Q.pushq(c, b);
-		
+		Q2.pushq(c, b);
+		counter++;
 	} while (c != 0 || b !=0);
-	
+
 	int base;
 	cout << "enter a base";
 	cin >> base;
 	int r=0;
 	int total=0 ;
 	cout << "F" << "(" << base << ")=";
-	while (Q.Emptyq() != true )		//|| S.Emptys()!=NULL //print stack
+	Q2.popq(c, b);
+	cout << "F(X) = " << c << "X^" << b;
+	while (!Q2.Emptyq())
+	{
+		for (int i = 1; i<counter; i++)
+		{
+			Q2.popq(c, b);
+			cout << '+' << c << "X^" << b;
+		}
+	}
+	cout << "=";
+	while (Q.Emptyq() != true )		
 	{
 		Q.popq(c,b);
-		
 		r = Q.calculations(c, b, base);
 		total += r;
-		
 	}
 	
-	
-	
 	cout << total;
-	
-
-
 	system("pause");
 	return 0;
 }
