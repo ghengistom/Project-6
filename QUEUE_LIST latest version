@@ -1,0 +1,81 @@
+#ifndef QUE_LIST_H
+#define QUE_LIST_H
+#include <iostream>
+
+
+using namespace std;
+
+template <class T>
+class QUEUE_LIST
+{
+private:
+	struct node
+	{
+		T coefficient;
+		T power;
+		node *next;
+	};
+	node *front, *rear;
+
+public:
+	QUEUE_LIST()										//constructor
+	{
+		front = NULL;									//set front pointer to NULL
+		rear = NULL;									//set rear pointer to NULL
+	}
+
+	//================================================Push method====================================================================
+	//This method will add a node to the rear of the queu
+	void pushq(T x, T y)
+	{
+		node *p;
+		p = new (node);
+		p->coefficient = x;
+		p->power = y;
+		p->next = NULL;
+		if (front == NULL)
+		{
+			front = p;
+			rear = p;
+		}
+		else
+		{
+			rear->next = p;
+			rear = p;
+
+		}
+	}
+	//================================================End push method================================================================
+	//================================================Emptyq method==================================================================
+	bool Emptyq()
+	{
+		if (front == NULL)
+			return true;
+		else 
+			return false;
+	}
+	//================================================End Emptyq method==============================================================
+
+	//================================================Pop method=====================================================================
+	void popq(T& x, T& y)
+	{
+		node *p = front;
+		
+	
+		x = front->coefficient;
+		y = front->power;
+		
+		front = front->next;
+		delete (p);
+		cout << x <<"x" << y<<"+";
+	}
+	int calculations(T& x, T& y,int chepo)
+	{
+		return x*pow(chepo, y);
+	}
+	//================================================End pop method=================================================================
+
+
+};
+
+#endif
